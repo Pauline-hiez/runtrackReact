@@ -56,8 +56,13 @@ function App() {
         <h1>Météo</h1>
         <SearchBar city={city} onSearch={handleSearch} />
         <SearchHistory history={history} onSelect={handleSearch} />
-        <Favorites onSelectCity={handleSearch} favorites={favorites} removeFromFavorites={removeFromFavorites} />
-        <Weather city={city} onAddFavorite={addToFavorites} />
+        <Weather
+          city={city}
+          onAddFavorite={addToFavorites}
+          favorites={favorites}
+          removeFromFavorites={removeFromFavorites}
+          onSelectCity={handleSearch}
+        />
       </header>
     </div>
   );

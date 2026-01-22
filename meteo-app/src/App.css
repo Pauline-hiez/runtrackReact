@@ -1,5 +1,41 @@
+/* Style moderne pour tous les boutons standards */
+button {
+  background: #2980b9;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-size: 1rem;
+  font-family: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 2px 8px 0 rgba(41, 128, 185, 0.10);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+button:hover,
+button:focus {
+  background: #1565a0;
+  color: #fff;
+  box-shadow: 0 4px 16px 0 rgba(41, 128, 185, 0.18);
+  outline: none;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  font-family: 'Poppins', 'Roboto', Arial, sans-serif;
+  background: linear-gradient(135deg, #6dd5fa 0%, #2980b9 100%);
+}
+
 .App {
   text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 32px 8px 64px 8px;
 }
 
 .App-logo {
@@ -13,15 +49,139 @@
   }
 }
 
+
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background: rgba(255, 255, 255, 0.10);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  padding: 32px 24px;
+  margin-top: 32px;
+  width: 100%;
+  max-width: 420px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  color: #222;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.weather-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 2px 16px 0 rgba(0, 0, 0, 0.10);
+  padding: 32px 24px 24px 24px;
+  margin-bottom: 32px;
+  width: 100%;
+  max-width: 340px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.weather-card img {
+  width: 90px;
+  height: 90px;
+  margin-bottom: 8px;
+}
+
+.weather-card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+}
+
+.weather-card .temp {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #2980b9;
+  margin: 8px 0 4px 0;
+}
+
+.weather-card .desc {
+  font-style: italic;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.weather-card .details {
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 4px;
+}
+
+.favorites-list {
+  background: #f7f7fa;
+  border-radius: 14px;
+  box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.07);
+  padding: 18px 16px 10px 16px;
+  margin-bottom: 24px;
+  width: 100%;
+  max-width: 340px;
+  text-align: left;
+}
+
+.favorites-list h3 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 1.2rem;
+  color: #2980b9;
+}
+
+.favorites-list ul {
+  padding: 0;
+  margin: 0;
+}
+
+.favorites-list li {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.favorites-list span[role="img"] {
+  font-size: 1.2em;
+}
+
+.favorites-list button {
+  background: #fff;
+  border: 1px solid #e74c3c;
+  color: #e74c3c;
+  border-radius: 6px;
+  padding: 2px 10px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background 0.2s, color 0.2s;
+}
+
+.favorites-list button:hover {
+  background: #e74c3c;
+  color: #fff;
+}
+
+@media (max-width: 600px) {
+
+  .App-header,
+  .weather-card,
+  .favorites-list {
+    max-width: 98vw;
+    padding: 12px 4vw;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .weather-card .temp {
+    font-size: 2rem;
+  }
 }
 
 .App-link {
@@ -32,6 +192,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import Favorites from './Favorites';
 
-const Weather = ({ city, onAddFavorite }) => {
+const Weather = ({ city, onAddFavorite, favorites, removeFromFavorites, onSelectCity }) => {
     const [weatherData, setWeatherData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -64,17 +65,24 @@ const Weather = ({ city, onAddFavorite }) => {
     const iconUrl = iconMap[iconCode] || require('../img/soleil.png');
 
     return (
-        <div>
+        <div className="weather-card">
             <h2>Météo à {city}</h2>
-            <img src={iconUrl} alt={weather[0].description} style={{ width: 80, height: 80 }} />
-            <p>Température : {main.temp}°C</p>
-            <p>Description : {weather[0].description}</p>
-            <p>Humidité : {main.humidity}%</p>
-            <p>Vent : {wind.speed} m/s</p>
+            <img src={iconUrl} alt={weather[0].description} />
+            <div className="temp">{main.temp}°C</div>
+            <div className="desc">{weather[0].description}</div>
+            <div className="details">Humidité : {main.humidity}%</div>
+            <div className="details">Vent : {wind.speed} m/s</div>
             {onAddFavorite && (
                 <button onClick={() => onAddFavorite(city)} style={{ marginTop: 10 }}>
                     Ajouter aux favoris
                 </button>
+            )}
+            {favorites && (
+                <Favorites
+                    onSelectCity={onSelectCity}
+                    favorites={favorites}
+                    removeFromFavorites={removeFromFavorites}
+                />
             )}
         </div>
     );
