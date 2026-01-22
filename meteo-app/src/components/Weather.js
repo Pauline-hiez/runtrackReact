@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const Weather = () => {
+const Weather = ({ city }) => {
     const [weatherData, setWeatherData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -12,21 +12,27 @@ const Weather = () => {
             try {
                 const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
                 const response = await fetch(
-                    `https://api.openweathermap.org/data/2.5/weather?q=Paris&appid=${apiKey}&units=metric&lang=fr`
+                    `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${apiKey}&units=metric&lang=fr`
                 );
                 if (!response.ok) {
-                    throw new Error('Erreur lors de la récupération des données météo');
+                    if (response.status === 404) {
+                        throw new Error('Ville non trouvée');
+                    } else {
+                        throw new Error('Erreur lors de la récupération des données météo');
+                    }
                 }
                 const data = await response.json();
                 setWeatherData(data);
             } catch (err) {
+                setWeatherData(null);
                 setError(err.message);
             } finally {
                 setLoading(false);
             }
         };
         fetchWeather();
-    }, []);
+    }, [city]);
+
 
     if (loading) return <div>Chargement...</div>;
     if (error) return <div>Erreur : {error}</div>;
@@ -59,7 +65,7 @@ const Weather = () => {
 
     return (
         <div>
-            <h2>Météo à Paris</h2>
+            <h2>Météo à {city}</h2>
             <img src={iconUrl} alt={weather[0].description} style={{ width: 80, height: 80 }} />
             <p>Température : {main.temp}°C</p>
             <p>Description : {weather[0].description}</p>
