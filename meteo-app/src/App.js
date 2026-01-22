@@ -2,6 +2,7 @@ import './App.css';
 import Weather from './components/Weather';
 import SearchBar from './components/SearchBar';
 import { useState, useEffect } from 'react';
+import SearchHistory from './components/SearchHistory';
 import Favorites from './components/Favorites';
 
 
@@ -9,12 +10,17 @@ import Favorites from './components/Favorites';
 function App() {
   const [city, setCity] = useState('Paris');
   const [favorites, setFavorites] = useState([]);
+  const [history, setHistory] = useState([]);
 
-  // Charger les favoris au montage
+  // Charger les favoris et l'historique au montage
   useEffect(() => {
-    const stored = localStorage.getItem('favorites');
-    if (stored) {
-      setFavorites(JSON.parse(stored));
+    const storedFav = localStorage.getItem('favorites');
+    if (storedFav) {
+      setFavorites(JSON.parse(storedFav));
+    }
+    const storedHist = localStorage.getItem('history');
+    if (storedHist) {
+      setHistory(JSON.parse(storedHist));
     }
   }, []);
 
@@ -35,6 +41,13 @@ function App() {
 
   const handleSearch = (newCity) => {
     setCity(newCity);
+    if (!newCity) return;
+    setHistory(prev => {
+      const filtered = prev.filter(c => c.toLowerCase() !== newCity.toLowerCase());
+      const updated = [newCity, ...filtered].slice(0, 5);
+      localStorage.setItem('history', JSON.stringify(updated));
+      return updated;
+    });
   };
 
   return (
@@ -42,6 +55,7 @@ function App() {
       <header className="App-header">
         <h1>Météo</h1>
         <SearchBar city={city} onSearch={handleSearch} />
+        <SearchHistory history={history} onSelect={handleSearch} />
         <Favorites onSelectCity={handleSearch} favorites={favorites} removeFromFavorites={removeFromFavorites} />
         <Weather city={city} onAddFavorite={addToFavorites} />
       </header>
