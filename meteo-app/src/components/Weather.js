@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Favorites from './Favorites';
+import WeatherAnimation from './WeatherAnimation';
 
 const Weather = ({ city, onAddFavorite, favorites, removeFromFavorites, onSelectCity }) => {
     const [weatherData, setWeatherData] = useState(null);
@@ -40,34 +41,12 @@ const Weather = ({ city, onAddFavorite, favorites, removeFromFavorites, onSelect
     if (!weatherData) return null;
 
     const { main, weather, wind } = weatherData;
-    // Associer les codes d'icône météo aux images locales
-    const iconMap = {
-        '01d': require('../img/soleil.png'), // ciel dégagé jour
-        '01n': require('../img/soleil.png'), // ciel dégagé nuit (même image)
-        '02d': require('../img/nuage.webp'), // quelques nuages jour
-        '02n': require('../img/nuage.webp'),
-        '03d': require('../img/nuage.webp'), // nuages épars
-        '03n': require('../img/nuage.webp'),
-        '04d': require('../img/nuage.webp'), // nuages brisés
-        '04n': require('../img/nuage.webp'),
-        '09d': require('../img/pluie.png'), // pluie
-        '09n': require('../img/pluie.png'),
-        '10d': require('../img/pluie.png'), // pluie modérée
-        '10n': require('../img/pluie.png'),
-        '11d': require('../img/orage.png'), // orage
-        '11n': require('../img/orage.png'),
-        '13d': require('../img/neige.png'), // neige
-        '13n': require('../img/neige.png'),
-        '50d': require('../img/vent.png'), // brouillard/vent
-        '50n': require('../img/vent.png'),
-    };
     const iconCode = weather && weather[0] ? weather[0].icon : '';
-    const iconUrl = iconMap[iconCode] || require('../img/soleil.png');
 
     return (
         <div className="weather-card">
             <h2>Météo à {city}</h2>
-            <img src={iconUrl} alt={weather[0].description} />
+            <WeatherAnimation iconCode={iconCode} description={weather[0].description} />
             <div className="temp">{main.temp}°C</div>
             <div className="desc">{weather[0].description}</div>
             <div className="details">Humidité : {main.humidity}%</div>
