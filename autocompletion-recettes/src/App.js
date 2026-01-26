@@ -18,7 +18,7 @@ function App() {
     const res = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`);
     const data = await res.json();
     setMeals(data.meals || []);
-    navigate('/resultats');
+    navigate(`/resultats?q=${encodeURIComponent(query)}`);
   };
 
   // Pour l'autocomplétion (sélection d'une suggestion)
@@ -46,7 +46,7 @@ function App() {
       <SearchBarWithNav />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/resultats" element={<SearchResults meals={meals} />} />
+        <Route path="/resultats" element={<SearchResults />} />
         <Route path="/recette/:id" element={<RecipeDetail />} />
       </Routes>
     </Router>

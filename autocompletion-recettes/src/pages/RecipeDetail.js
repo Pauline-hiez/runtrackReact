@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 const RecipeDetail = () => {
     const { id } = useParams();
+    const navigate = useNavigate();
     const [meal, setMeal] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -32,6 +33,12 @@ const RecipeDetail = () => {
 
     return (
         <div style={{ maxWidth: 700, margin: '40px auto', background: '#fff', borderRadius: 8, padding: 24, boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}>
+            <button
+                onClick={() => navigate(-1)}
+                style={{ marginBottom: 20, padding: '8px 16px', background: '#076f38c9', color: '#fff', border: 'none', borderRadius: 4, cursor: 'pointer', fontWeight: 500 }}
+            >
+                ← Retour aux résultats
+            </button>
             <h2>{meal.strMeal}</h2>
             <img src={meal.strMealThumb} alt={meal.strMeal} style={{ width: 300, borderRadius: 8, marginBottom: 20 }} />
             <h3>Ingrédients</h3>

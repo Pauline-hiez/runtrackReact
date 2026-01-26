@@ -40,16 +40,18 @@ const SearchBar = ({ onSelectMeal, onSearch }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit} style={{ position: 'relative', width: '300px' }}>
+        <form onSubmit={handleSubmit} style={{ position: 'relative', width: '340px', display: 'flex', alignItems: 'center', gap: '8px' }}>
             <input
                 type="text"
                 value={query}
                 onChange={handleChange}
                 placeholder="Rechercher une recette..."
-                style={{ width: '100%', padding: '8px' }}
+                style={{ flex: 1, padding: '8px' }}
             />
-            <button type="submit" style={{ display: 'none' }}>Rechercher</button>
-            {loading && <div>Chargement...</div>}
+            <button type="submit" style={{ padding: '8px 16px', background: '#076f38c9', color: '#fff', border: 'none', borderRadius: 4, cursor: 'pointer', fontWeight: 500 }}>
+                Recherchez
+            </button>
+            {loading && <div style={{ marginLeft: 8 }}>Chargement...</div>}
             {suggestions.length > 0 && (
                 <ul style={{
                     position: 'absolute',
