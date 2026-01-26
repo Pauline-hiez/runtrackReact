@@ -9,7 +9,7 @@ const Home = () => (
         justifyContent: 'center',
         alignItems: 'center',
     }}>
-        <h1>Recherche de recettes</h1>
+        <h1>Recherchez vos recettes</h1>
         <p>Utilisez la barre de recherche ci-dessus pour trouver une recette !</p>
     </div>
 );
