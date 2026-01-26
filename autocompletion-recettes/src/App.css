@@ -1,3 +1,31 @@
+.main-btn {
+  padding: 8px 16px;
+  background: #05643cbe;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.15s, color 0.15s, box-shadow 0.15s;
+}
+
+.main-btn:hover {
+  background: #05643c;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(5, 100, 60, 0.18);
+}
+
+
+.search-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 6px 24px rgba(5, 100, 60, 0.18);
+  border-color: #05643cbe;
+}
+
+body {
+  background: #05643c39;
+}
+
 .App {
   text-align: center;
 }
@@ -32,6 +60,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }

@@ -35,7 +35,8 @@ const RecipeDetail = () => {
         <div style={{ maxWidth: 700, margin: '40px auto', background: '#fff', borderRadius: 8, padding: 24, boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}>
             <button
                 onClick={() => navigate(-1)}
-                style={{ marginBottom: 20, padding: '8px 16px', background: '#076f38c9', color: '#fff', border: 'none', borderRadius: 4, cursor: 'pointer', fontWeight: 500 }}
+                className="main-btn"
+                style={{ marginBottom: 20 }}
             >
                 ← Retour aux résultats
             </button>

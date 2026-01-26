@@ -48,7 +48,7 @@ const SearchBar = ({ onSelectMeal, onSearch }) => {
                 placeholder="Rechercher une recette..."
                 style={{ flex: 1, padding: '8px' }}
             />
-            <button type="submit" style={{ padding: '8px 16px', background: '#076f38c9', color: '#fff', border: 'none', borderRadius: 4, cursor: 'pointer', fontWeight: 500 }}>
+            <button type="submit" className="main-btn">
                 Recherchez
             </button>
             {loading && <div style={{ marginLeft: 8 }}>Chargement...</div>}
