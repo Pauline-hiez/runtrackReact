@@ -67,9 +67,10 @@ const SearchBar = ({ onSelectMeal, onSearch }) => {
                         <li
                             key={meal.idMeal}
                             onClick={() => handleSelect(meal)}
-                            style={{ padding: '8px', cursor: 'pointer' }}
+                            style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '8px', cursor: 'pointer' }}
                         >
-                            {meal.strMeal}
+                            <img src={meal.strMealThumb} alt={meal.strMeal} style={{ width: 32, height: 32, objectFit: 'cover', borderRadius: 4 }} />
+                            <span>{meal.strMeal}</span>
                         </li>
                     ))}
                 </ul>
